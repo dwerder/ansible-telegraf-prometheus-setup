@@ -1,0 +1,26 @@
+---
+## configure grafana
+grafana_security:
+  admin_password: 1234
+
+## configure prometheus
+#prometheus_web_listen_address: "{{ ansible_default_ipv4.address }}:9090"
+#prometheus_web_external_url: "http://{{ ansible_default_ipv4.address }}:9090/"
+prometheus_external_labels:
+  monitoring: a
+prometheus_targets:
+- targets:
+  - 127.0.0.1:9126
+  labels:
+    env: localhost
+    job: node
+prometheus_alertmanager_config:
+  - scheme: http
+    path_prefix: /alertmanager
+    basic_auth:
+      username: user
+      password: pass
+    static_configs:
+      - targets: ["127.0.0.1:9093"]
+
+# configure alertmanager

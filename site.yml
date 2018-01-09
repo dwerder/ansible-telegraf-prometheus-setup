@@ -1,0 +1,10 @@
+---
+- name: Setup Telegraf and Prometheus Testenv
+  hosts: local
+  gather_facts: yes
+  connection: local
+  roles:
+    - telegraf
+    - cloudalchemy.alertmanager
+    - cloudalchemy.prometheus
+    - cloudalchemy.grafana

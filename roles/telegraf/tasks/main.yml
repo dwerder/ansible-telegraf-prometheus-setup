@@ -1,0 +1,16 @@
+- name: Import InfluxDB GPG signing key
+  apt_key: url=https://repos.influxdata.com/influxdb.key state=present
+
+- name: Add InfluxDB repository
+  apt_repository: repo='deb https://repos.influxdata.com/ubuntu xenial stable' state=present
+
+- name: Install telegraf
+  apt: "name={{ item }} state=installed update_cache=yes cache_valid_time=3600"
+  with_items:
+    - telegraf
+
+- name: Copy telegraf config
+  template: "src={{role_path}}/files/telegraf.conf.j2 dest=/etc/telegraf/telegraf.conf owner=telegraf"
+
+- name: Enable telegraf in systemd
+  service: name=telegraf enabled=yes state=restarted
