@@ -2,6 +2,15 @@ This is just a little script to setup a test environment for Telegraf (Influxdb)
 
 Its designed to run on an Ubuntu(16.04 Xenial) VM.
 
+### Run
+
+```bash
+cd /opt
+git clone https://github.com/dwerder/ansible-telegraf-prometheus-setup.git
+cd ansible-telegraf-prometheus-setup
+sudo bash setup.sh
+```
+
 At the end you should be able to access
 
 ### Grafana:
