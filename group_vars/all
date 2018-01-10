@@ -6,7 +6,7 @@ grafana_security:
 grafana_datasources:
   - name: "Prometheus"
     type: "prometheus"
-    access: "direct"
+    access: "proxy"
     url: "http://127.0.0.1:9090"
     basicAuth: false
     isDefault: true
